@@ -53,7 +53,9 @@ fun DiceWithButtonAndImage(modifier: Modifier = Modifier
     var result2 by remember { mutableStateOf(1) }
     var showSecondDice by remember { mutableStateOf(false) }
     var totalPoints by remember { mutableStateOf(0) }
-    val imageResource = when (result1) {
+
+
+    val imageResource1 = when (result1) {
         1 -> R.drawable.dice_1
         2 -> R.drawable.dice_2
         3 -> R.drawable.dice_3
@@ -61,13 +63,25 @@ fun DiceWithButtonAndImage(modifier: Modifier = Modifier
         5 -> R.drawable.dice_5
         else -> R.drawable.dice_6
     }
+    val imageResource2 = if (showSecondDice) {
+        when (result2) {
+            1 -> R.drawable.dice_1
+            2 -> R.drawable.dice_2
+            3 -> R.drawable.dice_3
+            4 -> R.drawable.dice_4
+            5 -> R.drawable.dice_5
+            else -> R.drawable.dice_6
+        }
+    } else {
+        R.drawable.dice_hidden
+    }
     Column(
         modifier = modifier,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
 
         Image(
-            painter = painterResource(imageResource),
+            painter = painterResource(imageResource1),
             contentDescription = result1.toString()
         )
         Spacer(modifier = Modifier.height(16.dp))
