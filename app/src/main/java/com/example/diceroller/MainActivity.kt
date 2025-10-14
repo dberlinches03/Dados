@@ -97,7 +97,7 @@ fun DiceWithButtonAndImage(modifier: Modifier = Modifier
             showSecondDice = false
             totalPoints = result1
         }) {
-            Text(stringResource(R.string.roll))
+            Text(stringResource(R.string.roll_one))
         }
         Spacer(modifier = Modifier.height(8.dp))
 
@@ -109,10 +109,10 @@ fun DiceWithButtonAndImage(modifier: Modifier = Modifier
             showSecondDice = true
             totalPoints = result1 + result2
         }) {
-            Text("Lanzar ambos dados")
+            Text(stringResource(R.string.roll_both))
         }
 
         Spacer(modifier = Modifier.height(16.dp))
-        Text("Puntos totales: $totalPoints")
+        Text(stringResource(R.string.total_points, totalPoints))
     }
 }
