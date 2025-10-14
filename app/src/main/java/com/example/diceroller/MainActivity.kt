@@ -91,6 +91,7 @@ fun DiceWithButtonAndImage(modifier: Modifier = Modifier
 
         Spacer(modifier = Modifier.height(16.dp))
         // Boton 1: lanza solo el pimer dado
+
         Button(onClick = {
             result1 = (1..6).random()
             showSecondDice = false
