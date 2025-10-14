@@ -2,6 +2,6 @@
     <string name="app_name">DiceTwoRoller</string>
     <string name="roll_one">Lanzar un dado</string>
     <string name="roll_both">Lanzar ambos dados</string>
-    <string name="total_points">Puntos totales: </string>
+    <string name="total_points">Puntos totales: %1$d</string>
     <string name="die_hidden_description">Dado ocultado</string>
 </resources>
