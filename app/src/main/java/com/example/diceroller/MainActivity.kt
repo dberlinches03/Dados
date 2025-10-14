@@ -102,6 +102,7 @@ fun DiceWithButtonAndImage(modifier: Modifier = Modifier
         Spacer(modifier = Modifier.height(8.dp))
 
         // Boton 2: lanza ambos dados
+
         Button(onClick = {
             result1 = (1..6).random()
             result2 = (1..6).random()
