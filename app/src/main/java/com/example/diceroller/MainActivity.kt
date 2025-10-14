@@ -84,9 +84,32 @@ fun DiceWithButtonAndImage(modifier: Modifier = Modifier
             painter = painterResource(imageResource1),
             contentDescription = result1.toString()
         )
+        Spacer(modifier = Modifier.height(8.dp))
+        Image(
+            painter = painterResource(imageResource2),
+            contentDescription = result2.toString())
+
         Spacer(modifier = Modifier.height(16.dp))
-        Button(onClick = { result1 = (1..6).random() }) {
+        // Boton 1: lanza solo el pimer dado
+        Button(onClick = {
+            result1 = (1..6).random()
+            showSecondDice = false
+            totalPoints = result1
+        }) {
             Text(stringResource(R.string.roll))
         }
+        Spacer(modifier = Modifier.height(8.dp))
+
+        // Boton 2: lanza ambos dados
+        Button(onClick = {
+            result1 = (1..6).random()
+            result2 = (1..6).random()
+            showSecondDice = true
+            totalPoints = result1 + result2
+        }) {
+            Text("Lanzar ambos dados")
+        }
+        Spacer(modifier = Modifier.height(16.dp))
+        Text("Puntos totales: $totalPoints")
     }
 }
