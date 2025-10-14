@@ -111,6 +111,7 @@ fun DiceWithButtonAndImage(modifier: Modifier = Modifier
         }) {
             Text("Lanzar ambos dados")
         }
+
         Spacer(modifier = Modifier.height(16.dp))
         Text("Puntos totales: $totalPoints")
     }
