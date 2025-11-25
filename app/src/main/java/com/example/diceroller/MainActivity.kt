@@ -63,36 +63,34 @@ fun DiceWithButtonAndImage(modifier: Modifier = Modifier.fillMaxSize()) {
 
     Column(
         modifier = modifier,
-        horizontalAlignment = Alignment.CenterHorizontally
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
     ) {
-        Column(
-            modifier = Modifier.weight(1f),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center
-        ) {
-            Image(
-                painter = painterResource(imageResource1),
-                contentDescription = result1.toString()
-            )
 
-            if (showSecondDice) {
-                val imageResource2 = when (result2) {
-                    1 -> R.drawable.dice_1
-                    2 -> R.drawable.dice_2
-                    3 -> R.drawable.dice_3
-                    4 -> R.drawable.dice_4
-                    5 -> R.drawable.dice_5
-                    else -> R.drawable.dice_6
-                }
-                Spacer(modifier = Modifier.height(8.dp))
-                Image(
-                    painter = painterResource(imageResource2),
-                    contentDescription = result2.toString()
-                )
+        Image(
+            painter = painterResource(imageResource1),
+            contentDescription = result1.toString()
+        )
+
+        if (showSecondDice) {
+            val imageResource2 = when (result2) {
+                1 -> R.drawable.dice_1
+                2 -> R.drawable.dice_2
+                3 -> R.drawable.dice_3
+                4 -> R.drawable.dice_4
+                5 -> R.drawable.dice_5
+                else -> R.drawable.dice_6
             }
+            Spacer(modifier = Modifier.height(8.dp))
+            Image(
+                painter = painterResource(imageResource2),
+                contentDescription = result2.toString()
+            )
         }
 
+        Spacer(modifier = Modifier.height(8.dp))
         // Boton 1: lanza solo el pimer dado
+
         Button(onClick = {
             result1 = (1..6).random()
             showSecondDice = false
@@ -103,6 +101,8 @@ fun DiceWithButtonAndImage(modifier: Modifier = Modifier.fillMaxSize()) {
         Spacer(modifier = Modifier.height(8.dp))
 
         // Boton 2: lanza ambos dados
+
+        Spacer(modifier = Modifier.height(8.dp))
         Button(onClick = {
             result1 = (1..6).random()
             result2 = (1..6).random()
@@ -114,6 +114,5 @@ fun DiceWithButtonAndImage(modifier: Modifier = Modifier.fillMaxSize()) {
 
         Spacer(modifier = Modifier.height(16.dp))
         Text(stringResource(R.string.total_points, totalPoints))
-        Spacer(modifier = Modifier.height(16.dp))
     }
 }
