@@ -5,11 +5,11 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -45,10 +45,7 @@ fun DiceRollerApp() {
 
 @Preview(showBackground = true)
 @Composable
-fun DiceWithButtonAndImage(modifier: Modifier = Modifier
-    .fillMaxSize()
-    .wrapContentSize(Alignment.Center)
-) {
+fun DiceWithButtonAndImage(modifier: Modifier = Modifier.fillMaxSize()) {
     var result1 by remember { mutableStateOf(1) }
     var result2 by remember { mutableStateOf(1) }
     var showSecondDice by remember { mutableStateOf(false) }
@@ -63,35 +60,39 @@ fun DiceWithButtonAndImage(modifier: Modifier = Modifier
         5 -> R.drawable.dice_5
         else -> R.drawable.dice_6
     }
-    val imageResource2 = if (showSecondDice) {
-        when (result2) {
-            1 -> R.drawable.dice_1
-            2 -> R.drawable.dice_2
-            3 -> R.drawable.dice_3
-            4 -> R.drawable.dice_4
-            5 -> R.drawable.dice_5
-            else -> R.drawable.dice_6
-        }
-    } else {
-        R.drawable.dice_hidden
-    }
+
     Column(
         modifier = modifier,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
+        Column(
+            modifier = Modifier.weight(1f),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
+        ) {
+            Image(
+                painter = painterResource(imageResource1),
+                contentDescription = result1.toString()
+            )
 
-        Image(
-            painter = painterResource(imageResource1),
-            contentDescription = result1.toString()
-        )
-        Spacer(modifier = Modifier.height(8.dp))
-        Image(
-            painter = painterResource(imageResource2),
-            contentDescription = result2.toString())
+            if (showSecondDice) {
+                val imageResource2 = when (result2) {
+                    1 -> R.drawable.dice_1
+                    2 -> R.drawable.dice_2
+                    3 -> R.drawable.dice_3
+                    4 -> R.drawable.dice_4
+                    5 -> R.drawable.dice_5
+                    else -> R.drawable.dice_6
+                }
+                Spacer(modifier = Modifier.height(8.dp))
+                Image(
+                    painter = painterResource(imageResource2),
+                    contentDescription = result2.toString()
+                )
+            }
+        }
 
-        Spacer(modifier = Modifier.height(16.dp))
         // Boton 1: lanza solo el pimer dado
-
         Button(onClick = {
             result1 = (1..6).random()
             showSecondDice = false
@@ -102,7 +103,6 @@ fun DiceWithButtonAndImage(modifier: Modifier = Modifier
         Spacer(modifier = Modifier.height(8.dp))
 
         // Boton 2: lanza ambos dados
-
         Button(onClick = {
             result1 = (1..6).random()
             result2 = (1..6).random()
@@ -114,5 +114,6 @@ fun DiceWithButtonAndImage(modifier: Modifier = Modifier
 
         Spacer(modifier = Modifier.height(16.dp))
         Text(stringResource(R.string.total_points, totalPoints))
+        Spacer(modifier = Modifier.height(16.dp))
     }
 }
